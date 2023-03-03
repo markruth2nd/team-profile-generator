@@ -13,3 +13,66 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+const idList = []
+const teamMembers = []
+
+const appMenu = ()=>{
+    function createManager(){
+        console.log("Add Team here..");
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "managerName",
+                message: "Please advise your managers Name?",
+                validate: answer =>{
+                    if(answer !== ""){
+                        return true
+                    }
+                    return "please input Manager's name."
+                }
+            },
+            {
+                type: "input",
+                name: "managerId",
+                message: "What is your managers ID?",
+                validate: answer =>{
+                    if(answer !== ""){
+                        return true
+                    }
+                    return "please add your Manager's ID."
+                }
+            },
+            {
+                type: "input",
+                name: "managerEmail",
+                message: "What is your Team managers email address?",
+                validate: answer =>{
+                    if(answer !== ""){
+                        return true
+                    }
+                    return "please add your Team Manager's email address."
+                }
+            },
+            {
+                type: "input",
+                name: "managerOfficeNumber",
+                message: "What is your managers Contact Number?",
+                validate: answer =>{
+                    if(answer !== ""){
+                        return true
+                    }
+                    return "please add your Team Manager's contact number."
+                }
+            },
+        ]).then(answers =>{
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+            teamMembers.push(manager);
+            idList.push(answers.managerId);
+            createTeam();
+        })
+    }
+
+    createManager();
+}
+
+appMenu();
