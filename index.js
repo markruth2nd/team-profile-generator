@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+const { choices } = require("yargs");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
@@ -17,6 +18,30 @@ const idList = []
 const teamMembers = []
 
 const appMenu = ()=>{
+    function createTeam(){
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "memberChoice",
+                message: "Which Team member would you like to choode?",
+                choices: [
+                    "Engineer",
+                    "Intern",
+                    "I don't know"
+                ]
+            }
+        ]).then(userChoice =>{
+            if(userChoice.memberChoice === "Engineer"){
+
+            }else if(userChoice.memberChoice === "Inter"){
+
+            }
+            else{
+                
+            }
+        })
+    }
+
     function createManager(){
         console.log("Add Team here..");
         inquirer.prompt([
