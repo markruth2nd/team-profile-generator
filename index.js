@@ -22,7 +22,58 @@ const appMenu = ()=>{
 
     }
     function addIntern(){
-        
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "what is your intern's name?",
+                validate: answer =>{
+                    if(answer !== ""){
+                        return true
+                    }
+                    return "please input intern's name."
+                }
+            },
+            {
+                type: "input",
+                name: "internId",
+                message: "what is your intern's ID?",
+                validate: answer =>{
+                    if(answer !== ""){
+                        return true
+                    }
+                    return "please input intern's ID."
+                }
+            },
+            {
+                type: "input",
+                name: "internEmail",
+                message: "what is your intern's email address?",
+                validate: answer =>{
+                    if(answer !== ""){
+                        return true
+                    }
+                    return "please input intern's email address."
+                }
+            },
+            {
+                type: "input",
+                name: "internSchool",
+                message: "what school does your intern attend?",
+                validate: answer =>{
+                    if(answer !== ""){
+                        return true
+                    }
+                    return "please input intern's School name."
+                }
+            }
+        ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool,);
+            teamMembers.push(intern);
+            idList.push(answers.internId);
+            console.log(intern)
+            createTeam()
+        })
     }
     function addEngineer(){
         inquirer.prompt([
@@ -95,7 +146,7 @@ const appMenu = ()=>{
             if(userChoice.memberChoice === "Engineer"){
                 /* BUILD ENGINEER TO ADD HERE */
                 addEngineer();
-            }else if(userChoice.memberChoice === "Inter"){
+            }else if(userChoice.memberChoice === "Intern"){
                 /* BUILD INTERN TO ADD HERE */
                 addIntern();
             }
